@@ -233,10 +233,130 @@ body {
 /* Tombstones Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 3rem 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem 1.5rem;
   margin-top: 1rem;
   animation: fadeIn 1s ease-out;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.2rem 1.25rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 0.75rem;
+  }
+  
+  /* Mobile optimized tombstone scaling */
+  .tombstone-card {
+    height: 200px !important;
+    padding: 1.8rem 0.75rem 1rem 0.75rem !important;
+    border-top-left-radius: 70px 90px !important;
+    border-top-right-radius: 70px 90px !important;
+    border-bottom-width: 4px !important;
+  }
+  
+  .tombstone-card::after {
+    top: 6px !important;
+    left: 6px !important;
+    right: 6px !important;
+    bottom: 6px !important;
+    border-top-left-radius: 64px 84px !important;
+    border-top-right-radius: 64px 84px !important;
+  }
+  
+  .tombstone-base {
+    height: 10px !important;
+    margin-top: -3px !important;
+    border-bottom-width: 2px !important;
+  }
+  
+  .tombstone-platform-icon {
+    width: 22px !important;
+    height: 22px !important;
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .tombstone-name {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.2rem !important;
+    -webkit-line-clamp: 2 !important;
+  }
+  
+  .tombstone-id {
+    font-size: 0.55rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .tombstone-date {
+    font-size: 0.6rem !important;
+    padding-top: 0.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem 0.5rem !important;
+  }
+  
+  .tombstone-card {
+    height: 160px !important;
+    padding: 1.25rem 0.5rem 0.75rem 0.5rem !important;
+    border-top-left-radius: 50px 70px !important;
+    border-top-right-radius: 50px 70px !important;
+    border-bottom-width: 3px !important;
+    border-width: 1px !important;
+  }
+  
+  .tombstone-card::after {
+    top: 4px !important;
+    left: 4px !important;
+    right: 4px !important;
+    bottom: 4px !important;
+    border-top-left-radius: 46px 66px !important;
+    border-top-right-radius: 46px 66px !important;
+  }
+  
+  .tombstone-base {
+    height: 8px !important;
+    margin-top: -2px !important;
+    border-bottom-width: 1px !important;
+    border-width: 1px !important;
+  }
+  
+  .tombstone-platform-icon {
+    width: 18px !important;
+    height: 18px !important;
+    margin-bottom: 0.4rem !important;
+  }
+  
+  .tombstone-name {
+    font-size: 0.65rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  
+  .tombstone-id {
+    font-size: 0.5rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  .tombstone-date {
+    font-size: 0.55rem !important;
+    padding-top: 0.15rem !important;
+  }
 }
 
 /* Realistic 3D Tombstone Card */
