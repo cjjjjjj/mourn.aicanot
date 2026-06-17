@@ -501,7 +501,7 @@ export default function Home() {
             <div className="detail-layout">
               {/* Left Side: 3D Tombstone & Candle */}
               <div className="detail-tombstone-panel">
-                <div className="tombstone-card" style={{ width: "210px", height: "250px", padding: "2.5rem 1rem 1rem 1rem", borderBottomWidth: "5px", cursor: "default" }}>
+                <div className="tombstone-card" style={{ width: "210px", height: "250px", padding: "2.5rem 1rem 1rem 1rem", borderBottomWidth: "5px", cursor: "default", maxWidth: "none" }}>
                   <div className="tombstone-platform-icon" style={{ marginBottom: "1rem" }}>
                     <PlatformIcon platform={selectedAccount.platform} />
                   </div>

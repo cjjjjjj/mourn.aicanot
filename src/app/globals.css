@@ -378,17 +378,21 @@ body {
 .tombstone-wrapper {
   perspective: 1000px;
   cursor: pointer;
+  max-width: 180px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .tombstone-card {
   position: relative;
   background: linear-gradient(to bottom, var(--stone-top) 0%, var(--stone-bottom) 100%);
   border: 2px solid var(--stone-border);
-  border-bottom: 8px solid #7c7c84;
-  border-top-left-radius: 140px 180px;
-  border-top-right-radius: 140px 180px;
-  padding: 3.5rem 1.5rem 2rem 1.5rem;
-  height: 340px;
+  border-bottom: 6px solid #7c7c84;
+  border-top-left-radius: 90px 110px;
+  border-top-right-radius: 90px 110px;
+  padding: 2.2rem 1rem 1.2rem 1rem;
+  height: 250px;
+  max-width: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -411,8 +415,8 @@ body {
   right: 10px;
   bottom: 10px;
   border: 1px dashed var(--stone-engrave);
-  border-top-left-radius: 130px 170px;
-  border-top-right-radius: 130px 170px;
+  border-top-left-radius: 82px 102px;
+  border-top-right-radius: 82px 102px;
   pointer-events: none;
   opacity: 0.5;
 }
@@ -421,11 +425,11 @@ body {
 .tombstone-base {
   content: '';
   width: 108%;
-  height: 22px;
+  height: 14px;
   background: linear-gradient(to right, #d6d6db, #b5b5bc, #d6d6db);
   border: 2px solid #a8a8b0;
-  border-bottom: 5px solid #72727a;
-  margin-top: -6px;
+  border-bottom: 3px solid #72727a;
+  margin-top: -4px;
   margin-left: -4%;
   border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
@@ -448,14 +452,14 @@ body {
 
 /* Platform symbol at top */
 .tombstone-platform-icon {
-  width: 38px;
-  height: 38px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #4e4e56;
   filter: drop-shadow(0 1px 2px rgba(255,255,255,0.8));
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.8rem;
   z-index: 2;
   transition: all 0.3s ease;
   opacity: 0.85;
@@ -470,10 +474,10 @@ body {
 /* Engraved Tombstone Content */
 .tombstone-name {
   font-family: 'Noto Serif SC', serif;
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #222226;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
   letter-spacing: 0.05em;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75), -1px -1px 0px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
@@ -484,10 +488,10 @@ body {
 
 .tombstone-id {
   font-family: 'Noto Serif SC', 'Outfit', serif;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 500;
   color: #4e4e56;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.2rem;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75);
   white-space: nowrap;
   overflow: hidden;
@@ -497,13 +501,13 @@ body {
 
 .tombstone-date {
   font-family: 'Noto Serif SC', serif;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: #4e4e56;
   margin-top: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding-top: 0.65rem;
+  padding-top: 0.4rem;
   width: 85%;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75);
 }
