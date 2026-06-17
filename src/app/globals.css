@@ -388,7 +388,7 @@ body {
   background: linear-gradient(to bottom, var(--stone-top) 0%, var(--stone-bottom) 100%);
   border: 2px solid var(--stone-border);
   border-bottom: 6px solid #7c7c84;
-  border-top-left-radius: 90px 110px;
+  border-top-left-radius: 60px 100px;
   border-top-right-radius: 60px 100px;
   padding: 2.2rem 1rem 1.2rem 1rem;
   height: 250px;
@@ -415,7 +415,7 @@ body {
   right: 10px;
   bottom: 10px;
   border: 1px dashed var(--stone-engrave);
-  border-top-left-radius: 82px 102px;
+  border-top-left-radius: 50px 90px;
   border-top-right-radius: 50px 90px;
   pointer-events: none;
   opacity: 0.5;
