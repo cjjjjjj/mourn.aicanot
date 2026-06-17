@@ -494,18 +494,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4e4e56;
-  filter: drop-shadow(0 1px 2px rgba(255,255,255,0.8));
+  color: #bcbcc2;
+  filter: drop-shadow(-1px -1px 1px rgba(0, 0, 0, 0.5)) drop-shadow(1px 1px 0px rgba(255, 255, 255, 0.2));
   margin-bottom: 0.5rem;
   z-index: 2;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0.85;
 }
 
 .tombstone-wrapper:hover .tombstone-platform-icon {
-  color: #111115;
-  transform: scale(1.1);
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+  color: #ffffff;
+  transform: scale(1.15);
+  filter: drop-shadow(-1px -1px 1px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+  opacity: 1;
 }
 
 /* Engraved Tombstone Content */
@@ -513,40 +514,59 @@ body {
   font-family: 'Noto Serif SC', serif;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #222226;
+  color: #e2e2e6;
   margin-bottom: 0.15rem;
   letter-spacing: 0.05em;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75), -1px -1px 0px rgba(0, 0, 0, 0.15);
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8), 1px 1px 0px rgba(255, 255, 255, 0.25);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 90%;
+  transition: all 0.3s ease;
+}
+
+.tombstone-wrapper:hover .tombstone-name {
+  color: #ffffff;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.85), 0 0 10px rgba(255, 255, 255, 0.35);
 }
 
 .tombstone-id {
   font-family: 'Noto Serif SC', 'Outfit', serif;
   font-size: 0.55rem;
   font-weight: 500;
-  color: #4e4e56;
+  color: #a0a0a9;
   margin-bottom: 0.8rem;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75);
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8), 1px 1px 0px rgba(255, 255, 255, 0.2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 90%;
+  transition: all 0.3s ease;
+}
+
+.tombstone-wrapper:hover .tombstone-id {
+  color: #e4e4e7;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.85), 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 .tombstone-date {
   font-family: 'Noto Serif SC', serif;
   font-size: 0.6rem;
   font-weight: 500;
-  color: #4e4e56;
+  color: #b2b2ba;
   margin-top: auto;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding-top: 0.25rem;
   width: 85%;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.75);
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.8), 1px 1px 0px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tombstone-wrapper:hover .tombstone-date {
+  color: #f4f4f6;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.85), 0 0 8px rgba(255, 255, 255, 0.2);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Modal Core (Glassmorphism) */
