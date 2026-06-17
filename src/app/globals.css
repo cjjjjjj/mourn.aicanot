@@ -20,10 +20,10 @@
   --candle-flame: #ff922b;
   --candle-glow: rgba(255, 146, 43, 0.25);
   
-  --stone-top: #e3e3e8;
-  --stone-bottom: #bebec4;
-  --stone-border: #a8a8b0;
-  --stone-engrave: rgba(0, 0, 0, 0.18);
+  --stone-top: #8a8a92;
+  --stone-bottom: #5c5c64;
+  --stone-border: #4c4c52;
+  --stone-engrave: rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -424,11 +424,11 @@ body {
   position: relative;
   background: linear-gradient(to bottom, var(--stone-top) 0%, var(--stone-bottom) 100%);
   border: 2px solid var(--stone-border);
-  border-bottom: 5px solid #7c7c84;
-  border-top-left-radius: 48px 80px;
-  border-top-right-radius: 48px 80px;
-  padding: 1.6rem 0.6rem 1rem 0.6rem;
-  height: 200px;
+  border-bottom: 5px solid #3c3c42;
+  border-top-left-radius: 42px 70px;
+  border-top-right-radius: 42px 70px;
+  padding: 1.4rem 0.5rem 0.8rem 0.5rem;
+  height: 180px;
   max-width: 140px;
   display: flex;
   flex-direction: column;
@@ -452,8 +452,8 @@ body {
   right: 8px;
   bottom: 8px;
   border: 1px dashed var(--stone-engrave);
-  border-top-left-radius: 42px 74px;
-  border-top-right-radius: 42px 74px;
+  border-top-left-radius: 36px 64px;
+  border-top-right-radius: 36px 64px;
   pointer-events: none;
   opacity: 0.5;
 }
@@ -463,9 +463,9 @@ body {
   content: '';
   width: 108%;
   height: 10px;
-  background: linear-gradient(to right, #d6d6db, #b5b5bc, #d6d6db);
-  border: 2px solid #a8a8b0;
-  border-bottom: 2px solid #72727a;
+  background: linear-gradient(to right, #808088, #5c5c64, #808088);
+  border: 2px solid #4c4c52;
+  border-bottom: 2px solid #3c3c42;
   margin-top: -3px;
   margin-left: -4%;
   border-radius: 4px;
@@ -475,7 +475,7 @@ body {
 
 .tombstone-wrapper:hover .tombstone-card {
   transform: translateY(-12px) rotateX(4deg);
-  border-color: #8c8c94;
+  border-color: #6c6c74;
   box-shadow: 
     0 25px 45px rgba(0, 0, 0, 0.5),
     0 0 30px rgba(255, 255, 255, 0.08),
