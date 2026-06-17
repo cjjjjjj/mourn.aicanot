@@ -156,7 +156,7 @@ const PLATFORM_LABELS = {
 };
 
 // Custom SVG Icons for Platforms
-function PlatformIcon({ platform, className = "" }) {
+export function PlatformIcon({ platform, className = "" }) {
   const p = platform ? platform.toLowerCase() : "";
 
   // WeChat

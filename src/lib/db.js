@@ -111,3 +111,32 @@ export function addMessage(accountId, author, content) {
   writeDb(db);
   return newMessage;
 }
+
+// Delete a specific account and its messages
+export function deleteAccount(accountId) {
+  const db = readDb();
+  db.accounts = db.accounts.filter(acc => acc.id !== accountId);
+  if (db.messages) {
+    db.messages = db.messages.filter(msg => msg.account_id !== accountId);
+  }
+  return writeDb(db);
+}
+
+// Update a specific account details
+export function updateAccount(accountId, updatedData) {
+  const db = readDb();
+  const index = db.accounts.findIndex(acc => acc.id === accountId);
+  if (index !== -1) {
+    db.accounts[index] = {
+      ...db.accounts[index],
+      platform: updatedData.platform || db.accounts[index].platform,
+      name: updatedData.name || db.accounts[index].name,
+      account_id: updatedData.account_id || db.accounts[index].account_id,
+      death_date: updatedData.death_date || db.accounts[index].death_date,
+      epitaph: updatedData.epitaph !== undefined ? updatedData.epitaph : db.accounts[index].epitaph
+    };
+    writeDb(db);
+    return db.accounts[index];
+  }
+  return null;
+}
