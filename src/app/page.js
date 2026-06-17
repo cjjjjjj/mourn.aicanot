@@ -26,6 +26,135 @@ const INTERNATIONAL_PLATFORMS = [
 
 const ALL_PLATFORMS = [...DOMESTIC_PLATFORMS, ...INTERNATIONAL_PLATFORMS, "其他"];
 
+// Translation dictionaries
+const TRANSLATIONS = {
+  zh: {
+    title: "主流社区账号悼念展示平台",
+    subtitle: "他们没有违反社群守则，他们只是运气不好。",
+    searchPlaceholder: "搜寻死者名称或 ID...",
+    btnRegister: "📝 登记死亡",
+    allPlatforms: "所有平台",
+    loading: "正在瞻仰纪念中...",
+    emptyState: "没有找到相匹配的受难账号。您可以点击上方按钮为他们登记。",
+    dateUnknown: "日期不详",
+    registerTitle: "登记罹难账号",
+    platformLabel: "受难平台",
+    customPlatformLabel: "自定义平台名称",
+    customPlatformPlaceholder: "请输入社交平台名称",
+    nameLabel: "死者名称",
+    namePlaceholder: "例如：fifi",
+    idLabel: "死者 ID",
+    idPlaceholder: "例如：fifiya_1219",
+    dateLabel: "死亡时间 (年-月-日)",
+    epitaphLabel: "墓志铭 / 遗言 / 简述",
+    epitaphPlaceholder: "留下他/她的墓志铭或账号简述...",
+    cancel: "取消",
+    submitRegister: "安葬完成",
+    submittingRegister: "正在安葬...",
+    successDomain: "mourn.aicanot.com",
+    successMsg: "资料已送出，安葬完成！",
+    successOk: "确定",
+    memorialHall: "悼念堂",
+    defaultEpitaph: "“这个账号什么也没有留下。”",
+    condolencesTitle: "网友寄语",
+    nicknamePlaceholder: "您的昵称 (选填)",
+    condolencePlaceholder: "写下对被封号逝去者的悼词或想法...",
+    btnSend: "送出寄语",
+    sending: "送出中...",
+    noMessages: "目前还没有网友留言，写下第一条留言寄托哀思吧。说明在此。",
+    anonymous: "匿名网友",
+    validationAlert: "死者名称和死者 ID 均为必填项。",
+    netError: "网络错误，登记失败。",
+    registerFail: "登记失败，请重试。",
+    domestic: "国内",
+    international: "国外",
+    other: "其他",
+  },
+  en: {
+    title: "Deactivated Accounts Memorial",
+    subtitle: "They didn't violate community rules, they were just unlucky.",
+    searchPlaceholder: "Search deceased by name or ID...",
+    btnRegister: "📝 Report Deactivation",
+    allPlatforms: "All Platforms",
+    loading: "Honoring memories...",
+    emptyState: "No matching accounts found. You can click the button above to register them.",
+    dateUnknown: "Date Unknown",
+    registerTitle: "Register Deactivated Account",
+    platformLabel: "Platform",
+    customPlatformLabel: "Custom Platform Name",
+    customPlatformPlaceholder: "Please enter social platform name",
+    nameLabel: "Account Name",
+    namePlaceholder: "e.g., fifi",
+    idLabel: "Account ID / Handle",
+    idPlaceholder: "e.g., fifiya_1219",
+    dateLabel: "Deactivation Date",
+    epitaphLabel: "Epitaph / Bio / Last Words",
+    epitaphPlaceholder: "Leave their epitaph or a brief account description...",
+    cancel: "Cancel",
+    submitRegister: "Submit Memorial",
+    submittingRegister: "Registering...",
+    successDomain: "mourn.aicanot.com",
+    successMsg: "Information submitted, memorial complete!",
+    successOk: "OK",
+    memorialHall: "Memorial",
+    defaultEpitaph: "“This account left nothing behind.”",
+    condolencesTitle: "Condolences & Messages",
+    nicknamePlaceholder: "Your Nickname (Optional)",
+    condolencePlaceholder: "Leave your condolences or thoughts for the deactivated account...",
+    btnSend: "Send Message",
+    sending: "Sending...",
+    noMessages: "No messages yet. Write the first condolence message to express your thoughts.",
+    anonymous: "Anonymous",
+    validationAlert: "Account Name and Account ID are required fields.",
+    netError: "Network error. Failed to register.",
+    registerFail: "Failed to register, please try again.",
+    domestic: "Domestic",
+    international: "Overseas",
+    other: "Other",
+  }
+};
+
+const PLATFORM_LABELS = {
+  zh: {
+    "微信公众号": "微信公众号",
+    "微博": "微博",
+    "抖音": "抖音",
+    "小红书": "小红书",
+    "Bilibili": "Bilibili",
+    "知乎": "知乎",
+    "豆瓣": "豆瓣",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Threads": "Threads",
+    "X (Twitter)": "X (Twitter)",
+    "YouTube": "YouTube",
+    "TikTok": "TikTok",
+    "Reddit": "Reddit",
+    "GitHub": "GitHub",
+    "其他": "其他",
+    "所有平台": "所有平台",
+  },
+  en: {
+    "微信公众号": "WeChat Off. Acc.",
+    "微博": "Weibo",
+    "抖音": "Douyin",
+    "小红书": "Xiaohongshu (RED)",
+    "Bilibili": "Bilibili",
+    "知乎": "Zhihu",
+    "豆瓣": "Douban",
+    "Facebook": "Facebook",
+    "Instagram": "Instagram",
+    "Threads": "Threads",
+    "X (Twitter)": "X (Twitter)",
+    "YouTube": "YouTube",
+    "TikTok": "TikTok",
+    "Reddit": "Reddit",
+    "GitHub": "GitHub",
+    "其他": "Other",
+    "所有平台": "All Platforms",
+  }
+};
+
 // Custom SVG Icons for Platforms
 function PlatformIcon({ platform, className = "" }) {
   const p = platform ? platform.toLowerCase() : "";
@@ -128,6 +257,7 @@ function PlatformIcon({ platform, className = "" }) {
 }
 
 export default function Home() {
+  const [lang, setLang] = useState("zh");
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -153,6 +283,19 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
   const [msgFormData, setMsgFormData] = useState({ author: "", content: "" });
   const [isSendingMessage, setIsSendingMessage] = useState(false);
+
+  // Check language on mount
+  useEffect(() => {
+    const savedLang = localStorage.getItem("mourn_lang");
+    if (savedLang && (savedLang === "zh" || savedLang === "en")) {
+      setLang(savedLang);
+    }
+  }, []);
+
+  const changeLanguage = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem("mourn_lang", newLang);
+  };
 
   // Load accounts on filter or search changes
   useEffect(() => {
@@ -257,7 +400,7 @@ export default function Home() {
     const { platform, customPlatform, name, account_id, death_date, epitaph } = formData;
 
     if (!name.trim() || !account_id.trim()) {
-      alert("死者名称和死者 ID 均为必填项。");
+      alert(TRANSLATIONS[lang].validationAlert);
       return;
     }
 
@@ -291,23 +434,42 @@ export default function Home() {
         setIsSuccessOpen(true);
         fetchAccounts();
       } else {
-        alert(data.message || "登记失败，请重试。");
+        alert(data.message || TRANSLATIONS[lang].registerFail);
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("网络错误，登记失败。");
+      alert(TRANSLATIONS[lang].netError);
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  const t = TRANSLATIONS;
+
   return (
     <div className="container">
+      {/* Language Selector */}
+      <div className="lang-toggle-wrapper">
+        <button
+          className={`lang-btn ${lang === "zh" ? "active" : ""}`}
+          onClick={() => changeLanguage("zh")}
+        >
+          中文
+        </button>
+        <span className="lang-divider">/</span>
+        <button
+          className={`lang-btn ${lang === "en" ? "active" : ""}`}
+          onClick={() => changeLanguage("en")}
+        >
+          English
+        </button>
+      </div>
+
       {/* Header */}
       <header className="header">
         <div className="dove-wrapper">🕊️</div>
-        <h1 className="title">主流社区账号悼念展示平台</h1>
-        <p className="subtitle">他们没有违反社群守则，他们只是运气不好。</p>
+        <h1 className="title">{t[lang].title}</h1>
+        <p className="subtitle">{t[lang].subtitle}</p>
       </header>
 
       {/* Search & Action Bar */}
@@ -316,7 +478,7 @@ export default function Home() {
           <input
             type="text"
             className="search-input"
-            placeholder="搜寻死者名称或 ID..."
+            placeholder={t[lang].searchPlaceholder}
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -325,7 +487,7 @@ export default function Home() {
           </svg>
         </div>
         <button className="btn-red" onClick={() => setIsAddOpen(true)}>
-          📝 登记死亡
+          {t[lang].btnRegister}
         </button>
       </div>
 
@@ -337,7 +499,7 @@ export default function Home() {
             className={`filter-tab ${selectedFilter === pf ? "active" : ""}`}
             onClick={() => setSelectedFilter(pf)}
           >
-            {pf}
+            {PLATFORM_LABELS[lang][pf] || pf}
           </button>
         ))}
       </div>
@@ -345,13 +507,13 @@ export default function Home() {
       {/* Grid of Tombstones */}
       {loading && accounts.length === 0 ? (
         <div style={{ textAlign: "center", padding: "4rem", color: "var(--text-secondary)" }}>
-          正在瞻仰纪念中...
+          {t[lang].loading}
         </div>
       ) : accounts.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">🕯️</div>
           <div className="empty-state-text">
-            没有找到相匹配的受难账号。您可以点击上方按钮为他们登记。
+            {t[lang].emptyState}
           </div>
         </div>
       ) : (
@@ -365,7 +527,7 @@ export default function Home() {
                 <h3 className="tombstone-name">{acc.name}</h3>
                 <span className="tombstone-id">{acc.account_id}</span>
                 <span className="tombstone-date">
-                  {acc.death_date ? acc.death_date : "日期不详"}
+                  {acc.death_date ? acc.death_date : t[lang].dateUnknown}
                 </span>
               </div>
               <div className="tombstone-base"></div>
@@ -380,13 +542,13 @@ export default function Home() {
           <div className="modal-content">
             <button className="modal-close" onClick={() => setIsAddOpen(false)}>✕</button>
             <div className="form-header">
-              <h2 className="form-title">通报罹难者</h2>
+              <h2 className="form-title">{t[lang].registerTitle}</h2>
             </div>
             <form onSubmit={handleRegisterSubmit}>
               <div className="form-body">
                 {/* Custom Styled Platform Selection */}
                 <div className="form-group">
-                  <label className="form-label">受难平台 <span>*</span></label>
+                  <label className="form-label">{t[lang].platformLabel} <span>*</span></label>
                   <div className="platform-options">
                     {ALL_PLATFORMS.map(p => (
                       <div
@@ -394,7 +556,7 @@ export default function Home() {
                         className={`platform-option ${formData.platform === p ? "selected" : ""}`}
                         onClick={() => setFormData(prev => ({ ...prev, platform: p }))}
                       >
-                        {p}
+                        {PLATFORM_LABELS[lang][p] || p}
                       </div>
                     ))}
                   </div>
@@ -402,12 +564,12 @@ export default function Home() {
 
                 {formData.platform === "其他" && (
                   <div className="form-group" style={{ animation: "fadeIn 0.25s ease" }}>
-                    <label className="form-label">自定义平台名称 <span>*</span></label>
+                    <label className="form-label">{t[lang].customPlatformLabel} <span>*</span></label>
                     <input
                       type="text"
                       name="customPlatform"
                       className="form-control"
-                      placeholder="请输入社交平台名称"
+                      placeholder={t[lang].customPlatformPlaceholder}
                       required
                       value={formData.customPlatform}
                       onChange={handleInputChange}
@@ -416,12 +578,12 @@ export default function Home() {
                 )}
 
                 <div className="form-group">
-                  <label className="form-label">死者名称 <span>*</span></label>
+                  <label className="form-label">{t[lang].nameLabel} <span>*</span></label>
                   <input
                     type="text"
                     name="name"
                     className="form-control"
-                    placeholder="例如：fifi"
+                    placeholder={t[lang].namePlaceholder}
                     required
                     value={formData.name}
                     onChange={handleInputChange}
@@ -429,12 +591,12 @@ export default function Home() {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">死者 ID <span>*</span></label>
+                  <label className="form-label">{t[lang].idLabel} <span>*</span></label>
                   <input
                     type="text"
                     name="account_id"
                     className="form-control"
-                    placeholder="例如：fifiya_1219"
+                    placeholder={t[lang].idPlaceholder}
                     required
                     value={formData.account_id}
                     onChange={handleInputChange}
@@ -442,7 +604,7 @@ export default function Home() {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">死亡时间 (年-月-日)</label>
+                  <label className="form-label">{t[lang].dateLabel}</label>
                   <input
                     type="date"
                     name="death_date"
@@ -453,11 +615,11 @@ export default function Home() {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">墓志铭 / 遗言 / 简述</label>
+                  <label className="form-label">{t[lang].epitaphLabel}</label>
                   <textarea
                     name="epitaph"
                     className="form-control"
-                    placeholder="留下他/她的墓志铭或账号简述..."
+                    placeholder={t[lang].epitaphPlaceholder}
                     value={formData.epitaph}
                     onChange={handleInputChange}
                   />
@@ -466,10 +628,10 @@ export default function Home() {
 
               <div className="form-footer">
                 <button type="button" className="btn-secondary" onClick={() => setIsAddOpen(false)}>
-                  取消
+                  {t[lang].cancel}
                 </button>
                 <button type="submit" className="btn-primary" disabled={isSubmitting}>
-                  {isSubmitting ? "正在安葬..." : "安葬完成"}
+                  {isSubmitting ? t[lang].submittingRegister : t[lang].submitRegister}
                 </button>
               </div>
             </form>
@@ -482,12 +644,12 @@ export default function Home() {
         <div className="success-toast-overlay" onClick={() => setIsSuccessOpen(false)}>
           <div className="success-toast" onClick={e => e.stopPropagation()}>
             <div className="success-toast-body">
-              <div className="success-toast-domain">mourn.aicanot.com</div>
+              <div className="success-toast-domain">{t[lang].successDomain}</div>
               <div style={{ fontSize: "2rem", margin: "0.5rem 0" }}>✅</div>
-              <div className="success-toast-msg">资料已送出，安葬完成！</div>
+              <div className="success-toast-msg">{t[lang].successMsg}</div>
             </div>
             <button className="success-toast-btn" onClick={() => setIsSuccessOpen(false)}>
-              确定
+              {t[lang].successOk}
             </button>
           </div>
         </div>
@@ -508,7 +670,7 @@ export default function Home() {
                   <h3 className="tombstone-name" style={{ fontSize: "0.95rem" }}>{selectedAccount.name}</h3>
                   <span className="tombstone-id" style={{ fontSize: "0.65rem", marginBottom: "1.5rem" }}>{selectedAccount.account_id}</span>
                   <span className="tombstone-date" style={{ fontSize: "0.7rem", width: "90%" }}>
-                    {selectedAccount.death_date ? selectedAccount.death_date : "日期不详"}
+                    {selectedAccount.death_date ? selectedAccount.death_date : t[lang].dateUnknown}
                   </span>
                 </div>
                 <div className="tombstone-base" style={{ width: "226px", height: "16px", marginTop: "-4px" }}></div>
@@ -524,19 +686,21 @@ export default function Home() {
                     <div className="candle-wax"></div>
                   </div>
                   <button className="candle-btn" onClick={handleLightCandle}>
-                    🔥 点亮一盏灯 ({selectedAccount.candles || 0})
+                    {lang === "zh" ? `🔥 点亮一盏灯 (${selectedAccount.candles || 0})` : `🔥 Light a Candle (${selectedAccount.candles || 0})`}
                   </button>
                 </div>
               </div>
 
               {/* Right Side: Message Wall */}
               <div className="detail-interaction-panel">
-                <h2 className="form-title" style={{ marginBottom: "0.5rem" }}>{selectedAccount.name} 悼念堂</h2>
+                <h2 className="form-title" style={{ marginBottom: "0.5rem" }}>
+                  {lang === "zh" ? `${selectedAccount.name} 悼念堂` : `${selectedAccount.name}'s ${t[lang].memorialHall}`}
+                </h2>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", fontStyle: "italic", marginBottom: "1.5rem" }}>
-                  {selectedAccount.epitaph || "“这个账号什么也没有留下。”"}
+                  {selectedAccount.epitaph || t[lang].defaultEpitaph}
                 </p>
 
-                <h3 className="message-wall-title">网友寄语</h3>
+                <h3 className="message-wall-title">{t[lang].condolencesTitle}</h3>
 
                 {/* Form to leave a message */}
                 <form onSubmit={handlePostMessage} className="message-input-form">
@@ -544,20 +708,20 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="您的昵称 (选填)"
+                      placeholder={t[lang].nicknamePlaceholder}
                       value={msgFormData.author}
                       onChange={e => setMsgFormData(prev => ({ ...prev, author: e.target.value }))}
                     />
                   </div>
                   <textarea
                     className="form-control"
-                    placeholder="写下对被封号逝去者的悼词或想法..."
+                    placeholder={t[lang].condolencePlaceholder}
                     required
                     value={msgFormData.content}
                     onChange={e => setMsgFormData(prev => ({ ...prev, content: e.target.value }))}
                   />
                   <button type="submit" className="btn-primary" style={{ alignSelf: "flex-end", padding: "0.45rem 1rem", fontSize: "0.8rem" }} disabled={isSendingMessage}>
-                    {isSendingMessage ? "送出中..." : "送出寄语"}
+                    {isSendingMessage ? t[lang].sending : t[lang].btnSend}
                   </button>
                 </form>
 
@@ -565,15 +729,15 @@ export default function Home() {
                 <div className="message-list">
                   {messages.length === 0 ? (
                     <div style={{ textAlign: "center", padding: "2rem 0", color: "var(--text-muted)", fontSize: "0.85rem" }}>
-                      目前还没有网友留言，写下第一条留言寄托哀思吧。
+                      {t[lang].noMessages}
                     </div>
                   ) : (
                     messages.map(msg => (
                       <div key={msg.id} className="message-item">
                         <div className="message-item-header">
-                          <span className="message-author">✍️ {msg.author}</span>
+                          <span className="message-author">✍️ {msg.author || t[lang].anonymous}</span>
                           <span className="message-time">
-                            {new Date(msg.created_at).toLocaleString('zh-CN', {
+                            {new Date(msg.created_at).toLocaleString(lang === 'zh' ? 'zh-CN' : 'en-US', {
                               year: 'numeric',
                               month: '2-digit',
                               day: '2-digit',

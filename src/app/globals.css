@@ -66,6 +66,43 @@ body {
   padding: 2.5rem 1.5rem;
 }
 
+/* Language Selector */
+.lang-toggle-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: -1rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  padding: 0.2rem 0.4rem;
+}
+
+.lang-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-btn.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.lang-divider {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  user-select: none;
+}
+
 /* Header Area */
 .header {
   text-align: center;
